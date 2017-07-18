@@ -19,10 +19,12 @@ Content-Length: 23
 Authorization required
 `
 
-	NotFound = `HTTP/1.0 404 Not Found
+	NotFound = `HTTP/1.0 406 Not Acceptable
 Content-Length: %d
-
-Tunnel %s not found
+{
+	\"error\": true,
+	\"message\":\"Client %s offline\"
+}
 `
 
 	BadRequest = `HTTP/1.0 400 Bad Request
