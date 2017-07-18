@@ -21,8 +21,9 @@ Authorization required
 
 	NotFound = `HTTP/1.0 406 Not Acceptable
 Content-Length: %d
+Content-Type: application/json
 
-Client %s offline
+{"error":true,"message":"Client %s offline"}
 `
 
 	BadRequest = `HTTP/1.0 400 Bad Request
@@ -91,7 +92,7 @@ func httpHandler(c conn.Conn, proto string) {
 	tunnel := tunnelRegistry.Get(fmt.Sprintf("%s://%s", proto, host))
 	if tunnel == nil {
 		c.Info("No tunnel found for hostname %s", host)
-		c.Write([]byte(fmt.Sprintf(NotFound, len(host)+16, host)))
+		c.Write([]byte(fmt.Sprintf(NotFound, len(host)+43, host)))
 		return
 	}
 
