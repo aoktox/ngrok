@@ -91,7 +91,7 @@ func httpHandler(c conn.Conn, proto string) {
 	tunnel := tunnelRegistry.Get(fmt.Sprintf("%s://%s", proto, host))
 	if tunnel == nil {
 		c.Info("No tunnel found for hostname %s", host)
-		c.Write([]byte(fmt.Sprintf(NotFound, len(host)+18, host)))
+		c.Write([]byte(fmt.Sprintf(NotFound, len(host)+16, host)))
 		return
 	}
 
